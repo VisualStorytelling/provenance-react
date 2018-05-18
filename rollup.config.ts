@@ -12,14 +12,12 @@ const libraryName = 'provenance-react'
 export default {
   input: `src/${libraryName}.ts`,
   output: [
-    { file: pkg.main, name: camelCase(libraryName), format: 'umd' },
-    { file: pkg.module, format: 'es' },
+    { file: pkg.main, name: camelCase(libraryName), format: 'umd', sourcemap: true },
+    { file: pkg.module, format: 'es', sourcemap: true },
   ],
-  sourcemap: true,
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [
-    'react',
-    'react-dom'
+    'react'
   ],
   watch: {
     include: 'src/**',
@@ -30,7 +28,21 @@ export default {
     // Compile TypeScript files
     typescript({ useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
-    commonjs(),
+    commonjs({
+      namedExports: {
+        // The commonjs plugin can't figure out the exports of some modules, so if rollup gives warnings like:
+        // ⚠️   'render' is not exported by 'node_modules/react-dom/index.js'
+        // Just add the mentioned file / export here
+        'node_modules/react-dom/index.js': [
+            'render',
+        ],
+        'node_modules/react/react.js': [
+            'Component',
+            'PropTypes',
+            'createElement',
+        ],
+      },
+    }),
     // Allow node_modules resolution, so you can use 'external' to control
     // which external modules to include in the bundle
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
