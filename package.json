@@ -1,7 +1,7 @@
 {
   "name": "@visualstorytelling/provenance-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "React component to visualize provenance graph",
   "keywords": [],
   "main": "dist/provenance-react.umd.js",
   "module": "dist/provenance-react.es5.js",
@@ -74,13 +74,16 @@
     "mapCoverage": true
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.10",
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
+    "@types/react": "^16.3.14",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
     "cz-conventional-changelog": "^2.0.0",
+    "enzyme": "^3.3.0",
     "husky": "^0.14.0",
     "jest": "^22.0.2",
     "lint-staged": "^7.0.0",
@@ -104,5 +107,12 @@
     "typedoc": "^0.11.0",
     "typescript": "^2.6.2",
     "validate-commit-msg": "^2.12.2"
+  },
+  "dependencies": {
+    "@visualstorytelling/provenance-core": "^1.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   }
 }
