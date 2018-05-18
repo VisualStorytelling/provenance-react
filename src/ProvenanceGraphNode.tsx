@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { ProvenanceNode, NodeIdentifier } from '@visualstorytelling/provenance-core'
 
-export interface IProps {
+export interface IProvenanceGraphNodeProps {
     node: ProvenanceNode
     onClick(nodeIdentifier: NodeIdentifier): void;
 }
 
-export class ProvenanceGraphNode extends React.Component<IProps, {}> {
+export class ProvenanceGraphNode extends React.Component<IProvenanceGraphNodeProps, {}> {
 
     onClick = () => this.props.onClick(this.props.node.id)
 
