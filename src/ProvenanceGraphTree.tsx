@@ -9,7 +9,7 @@ export interface IProvenanceGraphProps {
 export class ProvenanceGraphTree extends React.Component<IProvenanceGraphProps, {}> {
     onClick = (nodeIdentifier: NodeIdentifier) => {
         this.props.traverser.toStateNode(nodeIdentifier).then(() => {
-            // do something after node has been made current
+            this.forceUpdate();
         });
     }
 
