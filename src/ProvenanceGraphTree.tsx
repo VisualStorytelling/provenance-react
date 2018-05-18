@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { IProvenanceGraphTraverser, NodeIdentifier } from '@visualstorytelling/provenance-core'
-import { ProvenanceGraphNode } from './provenance-react';
+import { ProvenanceGraphNode } from './ProvenanceGraphNode';
 
 export interface IProvenanceGraphProps {
-    provenance: IProvenanceGraphTraverser
+    traverser: IProvenanceGraphTraverser
 }
 
-export class ProvenanceGraph extends React.Component<IProvenanceGraphProps, {}> {
+export class ProvenanceGraphTree extends React.Component<IProvenanceGraphProps, {}> {
     onClick = (nodeIdentifier: NodeIdentifier) => {
-        this.props.provenance.toStateNode(nodeIdentifier).then(() => {
+        this.props.traverser.toStateNode(nodeIdentifier).then(() => {
             // do something after node has been made current
         });
     }
@@ -18,24 +18,26 @@ export class ProvenanceGraph extends React.Component<IProvenanceGraphProps, {}> 
     }
 
     componentDidMount() {
-        const graph = this.props.provenance.graph
+        const graph = this.props.traverser.graph
         graph.on('nodeAdded', this.onGraphChange)
         graph.on('currentChanged', this.onGraphChange)
         graph.on('nodeChanged', this.onGraphChange)
     }
 
     componentWillUnmount() {
-        const graph = this.props.provenance.graph
+        const graph = this.props.traverser.graph
         graph.off('nodeAdded', this.onGraphChange)
         graph.off('currentChanged', this.onGraphChange)
         graph.off('nodeChanged', this.onGraphChange)
     }
 
     render() {
-        const root = this.props.provenance.graph.root
+        const graph = this.props.traverser.graph 
+        const root = graph.root
+        const current = graph.current
         return (
             <ol>
-                <ProvenanceGraphNode node={root} onClick={this.onClick} />
+                <ProvenanceGraphNode node={root} onClick={this.onClick} current={current}/>
             </ol>
         )
     }

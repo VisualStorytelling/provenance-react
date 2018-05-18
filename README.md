@@ -8,7 +8,7 @@ npm install @visualstorytelling/provenance-react
 ```
 
 ```ts
-import { ProvenanceGraph } from '@visualstorytelling/provenance-react';
+import { ProvenanceGraphTree } from '@visualstorytelling/provenance-react';
 
 
 ```
