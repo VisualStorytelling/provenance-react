@@ -1,5 +1,7 @@
 # React component to visualize provenance graph
 
+[![Build Status](https://travis-ci.org/VisualStorytelling/provenance-react.svg?branch=master)](https://travis-ci.org/VisualStorytelling/provenance-react)
+[![Coverage Status](https://coveralls.io/repos/github/VisualStorytelling/provenance-react/badge.svg?branch=master)](https://coveralls.io/github/VisualStorytelling/provenance-react?branch=master)
 
 ### Usage
 
@@ -12,6 +14,8 @@ import { ProvenanceGraphTree } from '@visualstorytelling/provenance-react';
 
 
 ```
+
+How to combine the react component with redux see https://github.com/VisualStorytelling/todomvc-redux-react-typescript and it's demo https://visualstorytelling.github.io/todomvc-redux-react-typescript/
 
 ### NPM scripts
 
